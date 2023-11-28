@@ -73,8 +73,8 @@ function filterTable($query)
                     <?php while($row = mysqli_fetch_array($search_result)):?>
             
             <tr>
-                <td><?php echo $row['StudentRegno'] ?></td>
-                <td><?php echo $row['studentName'] ?></td>
+                <td><?php echo $row['id'] ?></td>
+                <td><?php echo $row['name'] ?></td>
             </tr>
             
             <?php endwhile;?>

@@ -102,7 +102,7 @@ if(isset($_GET['del']))
                                         <tr>
                                             <th>#</th>
                                             <th>Course Name </th>
-                                            <th>Seat limit</th>
+                                            <th>Set limit</th>
                                              <th>Creation Date</th>
                                              <th>Action</th>
                                         </tr>
@@ -119,7 +119,7 @@ while($row=mysqli_fetch_array($sql))
                                         <tr>
                                             <td><?php echo $cnt;?></td>
                                             <td><?php echo htmlentities($row['courseName']);?></td>
-                                             <td><?php echo htmlentities($row['noofSeats']);?></td>
+                                             <td><?php echo htmlentities($row['nooflimits']);?></td>
                                             <td><?php echo htmlentities($row['creationDate']);?></td>
                                             <td>
                                             <a href="edit-course.php?id=<?php echo $row['id']?>">

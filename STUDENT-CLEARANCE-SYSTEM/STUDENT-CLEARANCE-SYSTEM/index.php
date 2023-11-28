@@ -68,7 +68,7 @@ exit();
                         <input type="password" name="password" class="form-control"  />
                         <hr />
                         <button type="submit" name="submit" class="btn btn-danger"><span class="glyphicon glyphicon-user"></span required> &nbsp;Log In </button>&nbsp;<br><br>
-                 <a class="btn btn-danger" style="text-align: right;" href="admin/index.php">Admin Login</a>
+                  
 
                 </div>
                 </form>

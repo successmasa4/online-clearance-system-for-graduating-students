@@ -2,12 +2,23 @@
 <?php
 session_start();
 include('includes/config.php');
+
+
+if(isset($_GET['StudentRegno'])){
+    $id  = $_GET['StudentRegno'];
+  }
+
+  $select = "SELECT * FROM students WHERE StudentRegno = '$id'";
+$res = mysqli_query($bd,$select);
+$row = mysqli_fetch_assoc($res);
+
+
 if(strlen($_SESSION['login'])==0)
     {   
 header('location:index.php');
 }
 else{
-date_default_timezone_set('Nairobi/Kenya');// change according timezone
+//date_default_timezone_set('Nairobi/Kenya');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
@@ -23,6 +34,9 @@ else
 $_SESSION['msg']="Error :Wrong Pincode. Please Enter a Valid Pincode !!";
 }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +65,7 @@ $_SESSION['msg']="Error :Wrong Pincode. Please Enter a Valid Pincode !!";
         <div class="container">
               <div class="row">
                     <div class="col-md-12">
+                      
                         <h1 class="page-head-line">Student Verification Code</h1>
                     </div>
                 </div>
@@ -68,7 +83,7 @@ $_SESSION['msg']="Error :Wrong Pincode. Please Enter a Valid Pincode !!";
                        <form name="pincodeverify" method="post">
    <div class="form-group">
     <label for="pincode">Enter Verification code</label>
-    <input type="password" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required />
+    <input type="password" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required value="<?php echo $row['pincode']?>" />
   </div>
  
   <button type="submit" name="submit" class="btn btn-default">Verify</button>

@@ -1,6 +1,11 @@
 <?php
 session_start();
 include('includes/config.php');
+if(isset($_GET['StudentRegno'])){
+  $id  = $_GET['StudentRegno'];
+}
+
+
 if(strlen($_SESSION['login'])==0)
     {   
 header('location:index.php');
@@ -64,7 +69,7 @@ else
                     <div class="col-md-6">
                         <div class="panel panel-default">
                         <div class="panel-heading">
-                          STUDENT PROFILE
+                          STUDENT PROFILE <?php echo $id?>
                         </div>
 <font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
 <?php $sql=mysqli_query($bd, "select * from students where StudentRegno='".$_SESSION['login']."'");
@@ -109,16 +114,35 @@ while($row=mysqli_fetch_array($sql))
     <label for="Pincode">Upload New Photo  </label>
     <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>" />
   </div>
+  
+   <br>
+  <br>
+  <?php echo "<a  class='btn btn-success' href='cv.php?StudentRegno=".$row['StudentRegno']."'>Create Cv</a>"?>
+<?php echo "<a  class='btn btn-primary' href='viewcv.php?StudentRegno=".$row['StudentRegno']."'>View Cv</a>"?>
+
+
+<p>Start clearance</p>
+ <?php echo "<a  class='btn btn-primary' href='pincode-verification.php?StudentRegno=".$row['StudentRegno']."'>Enter</a>"?>
+ <br>
+ <br>
+  
+ 
 
 
   <?php } ?>
 
  <button type="submit" name="submit" id="submit" class="btn btn-default">Update</button><br><br>
- <p>Start clearance</p>
-  <a class="btn btn-danger" style="text-align: right;" href="pincode-verification.php">Enter</a>
+ <a href='mpesa/mpesa/index.php' class="btn btn-primary">Pay</div>
+ 
+
+
+  
+  
 </form>
                             </div>
                             </div>
+                            
+                            
                     </div>
                   
                 </div>
